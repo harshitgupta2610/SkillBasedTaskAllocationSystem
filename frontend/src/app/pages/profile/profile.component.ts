@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { SkillService } from '../../services/skill.service';
+import { ThemeService } from '../../services/theme.service';
 import { User, SkillSummary } from '../../models/user.model';
 import { Skill } from '../../models/skill.model';
 
@@ -48,6 +49,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    public themeService: ThemeService,
     private userService: UserService,
     private skillService: SkillService,
     public location: Location

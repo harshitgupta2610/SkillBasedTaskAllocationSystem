@@ -1,12 +1,16 @@
 <!-- ── Navbar ─────────────────────────────── -->
 <nav class="app-nav">
-  <div class="brand"><span>⚡</span> SkillTask</div>
-  <span class="role-badge"
-        [style.background]="user?.role === 'MANAGER' ? '#fdf4ff' : '#ecfdf5'"
-        [style.color]="user?.role === 'MANAGER' ? '#9333ea' : '#059669'">
-    {{ user?.role | titlecase }}
-  </span>
+  <div class="brand"><span>🌸</span> SkillTask</div>
+  <span class="role-badge">{{ user?.role | titlecase }}</span>
   <div class="nav-actions">
+    <!-- Dark / light mode toggle -->
+    <button class="btn btn-sm btn-outline-secondary"
+            (click)="themeService.toggle()"
+            [title]="themeService.isDark ? 'Switch to light mode' : 'Switch to dark mode'">
+      <i class="bi" [class.bi-sun-fill]="themeService.isDark"
+                    [class.bi-moon-stars-fill]="!themeService.isDark"></i>
+    </button>
+
     <button class="btn btn-sm btn-outline-secondary" (click)="location.back()">
       <i class="bi bi-arrow-left me-1"></i> Back
     </button>

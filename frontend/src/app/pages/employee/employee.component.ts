@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TaskService } from '../../services/task.service';
 import { UserService } from '../../services/user.service';
+import { ThemeService } from '../../services/theme.service';
 import { Task, TaskStatus } from '../../models/task.model';
 
 @Component({
@@ -18,6 +19,7 @@ export class EmployeeComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    public themeService: ThemeService,
     private taskService: TaskService,
     private userService: UserService
   ) {}

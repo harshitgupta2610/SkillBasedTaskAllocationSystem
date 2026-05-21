@@ -1,11 +1,19 @@
 <!-- ── Top Navbar ──────────────────────────── -->
 <nav class="app-nav">
   <div class="brand">
-    <span>⚡</span> SkillTask
+    <span>🌸</span> SkillTask
   </div>
   <span class="role-badge">Manager</span>
 
   <div class="nav-actions">
+    <!-- Dark / light mode toggle -->
+    <button class="btn btn-sm btn-outline-secondary"
+            (click)="themeService.toggle()"
+            [title]="themeService.isDark ? 'Switch to light mode' : 'Switch to dark mode'">
+      <i class="bi" [class.bi-sun-fill]="themeService.isDark"
+                    [class.bi-moon-stars-fill]="!themeService.isDark"></i>
+    </button>
+
     <button class="btn btn-sm btn-outline-secondary" (click)="loadTasks(); loadEmployees()">
       <i class="bi bi-arrow-clockwise"></i>
     </button>
@@ -87,28 +95,28 @@
       <!-- Stat cards -->
       <div class="row g-3 mb-4">
         <div class="col-6 col-xl-3">
-          <div class="stat-card" style="background:linear-gradient(135deg,#4f46e5,#7c3aed)">
+          <div class="stat-card" style="background:linear-gradient(135deg,#EE5582,#FF8FA6)">
             <div class="num">{{ stats.total }}</div>
             <div class="lbl">Total Tasks</div>
             <i class="bi bi-collection icon"></i>
           </div>
         </div>
         <div class="col-6 col-xl-3">
-          <div class="stat-card" style="background:linear-gradient(135deg,#0ea5e9,#2563eb)">
+          <div class="stat-card" style="background:linear-gradient(135deg,#A990E5,#C7B1F0)">
             <div class="num">{{ stats.assigned }}</div>
             <div class="lbl">Assigned</div>
             <i class="bi bi-person-check icon"></i>
           </div>
         </div>
         <div class="col-6 col-xl-3">
-          <div class="stat-card" style="background:linear-gradient(135deg,#f59e0b,#d97706)">
+          <div class="stat-card" style="background:linear-gradient(135deg,#FFB84D,#FFD89C)">
             <div class="num">{{ stats.inProgress }}</div>
             <div class="lbl">In Progress</div>
             <i class="bi bi-arrow-repeat icon"></i>
           </div>
         </div>
         <div class="col-6 col-xl-3">
-          <div class="stat-card" style="background:linear-gradient(135deg,#10b981,#059669)">
+          <div class="stat-card" style="background:linear-gradient(135deg,#4ECDC4,#79D8C4)">
             <div class="num">{{ stats.done }}</div>
             <div class="lbl">Done</div>
             <i class="bi bi-check-circle icon"></i>

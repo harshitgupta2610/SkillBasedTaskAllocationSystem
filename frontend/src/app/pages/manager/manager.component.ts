@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { TaskService } from '../../services/task.service';
 import { UserService } from '../../services/user.service';
 import { SkillService } from '../../services/skill.service';
+import { ThemeService } from '../../services/theme.service';
 import { Task, TaskCreateRequest, TaskStatus, Priority } from '../../models/task.model';
 import { User } from '../../models/user.model';
 import { Skill } from '../../models/skill.model';
@@ -46,6 +47,7 @@ export class ManagerComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    public themeService: ThemeService,
     private taskService: TaskService,
     private userService: UserService,
     private skillService: SkillService

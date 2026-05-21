@@ -1,35 +1,15 @@
 <div class="login-page">
 
-  <!-- ── Left hero ─────────────────────────── -->
-  <div class="login-hero">
-    <div>
-      <div style="font-size:2.4rem;margin-bottom:12px">⚡</div>
-      <h1>Join<br>SkillTask</h1>
-      <p>Set up your account in seconds and start allocating tasks smarter.</p>
-
-      <div class="feature-item mt-4">
-        <i class="bi bi-person-workspace"></i>
-        <span><strong>Employees</strong> get auto-assigned tasks based on their skills</span>
-      </div>
-      <div class="feature-item">
-        <i class="bi bi-briefcase"></i>
-        <span><strong>Managers</strong> create tasks and track team progress</span>
-      </div>
-      <div class="feature-item">
-        <i class="bi bi-cpu"></i>
-        <span>Smart algorithm scores and matches every assignment</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Right form panel ───────────────────── -->
+  <!-- ── Left: form panel ─────────────────────────── -->
   <div class="login-form-side">
     <div class="login-form-wrap fade-up">
 
-      <h2>Create account</h2>
-      <p class="sub">Fill in your details to get started</p>
+      <div class="login-logo">SkillTask</div>
+      <p class="sub" style="margin-bottom:6px">Hey there 👋</p>
+      <h2>Sign Up</h2>
+      <p class="sub">Create your account in seconds.</p>
 
-      <!-- Error banner -->
+      <!-- Error -->
       <div *ngIf="error" class="form-error-banner">
         <i class="bi bi-exclamation-circle-fill"></i> {{ error }}
       </div>
@@ -43,7 +23,9 @@
                  [class.is-invalid]="fieldErrors['name']"
                  placeholder="e.g. Alice Johnson">
         </div>
-        <div *ngIf="fieldErrors['name']" class="field-error">{{ fieldErrors['name'] }}</div>
+        <div *ngIf="fieldErrors['name']" class="field-error">
+          <i class="bi bi-exclamation-circle"></i> {{ fieldErrors['name'] }}
+        </div>
       </div>
 
       <!-- Email -->
@@ -55,32 +37,38 @@
                  [class.is-invalid]="fieldErrors['email']"
                  placeholder="you@company.com">
         </div>
-        <div *ngIf="fieldErrors['email']" class="field-error">{{ fieldErrors['email'] }}</div>
+        <div *ngIf="fieldErrors['email']" class="field-error">
+          <i class="bi bi-exclamation-circle"></i> {{ fieldErrors['email'] }}
+        </div>
       </div>
 
       <!-- Role -->
       <div class="mb-3">
         <label class="form-label">I am a…</label>
         <div class="role-picker">
-          <div class="role-option" [class.role-selected]="role==='EMPLOYEE'" (click)="role='EMPLOYEE'">
-            <div class="role-icon" style="background:#eff6ff;color:#2563eb">
+          <div class="role-option" [class.role-selected]="role==='EMPLOYEE'"
+               (click)="role='EMPLOYEE'">
+            <div class="role-icon" style="background:#FFE0EA;color:var(--primary)">
               <i class="bi bi-person-workspace"></i>
             </div>
             <div>
               <div class="role-name">Employee</div>
-              <div class="role-desc">Receive & complete tasks</div>
+              <div class="role-desc">Get tasks</div>
             </div>
-            <i *ngIf="role==='EMPLOYEE'" class="bi bi-check-circle-fill ms-auto" style="color:#2563eb"></i>
+            <i *ngIf="role==='EMPLOYEE'" class="bi bi-check-circle-fill ms-auto"
+               style="color:var(--primary)"></i>
           </div>
-          <div class="role-option" [class.role-selected]="role==='MANAGER'" (click)="role='MANAGER'">
-            <div class="role-icon" style="background:#fdf4ff;color:#9333ea">
-              <i class="bi bi-briefcase"></i>
+          <div class="role-option" [class.role-selected]="role==='MANAGER'"
+               (click)="role='MANAGER'">
+            <div class="role-icon" style="background:#E0F7F3;color:var(--success)">
+              <i class="bi bi-briefcase-fill"></i>
             </div>
             <div>
               <div class="role-name">Manager</div>
-              <div class="role-desc">Create tasks & manage team</div>
+              <div class="role-desc">Create tasks</div>
             </div>
-            <i *ngIf="role==='MANAGER'" class="bi bi-check-circle-fill ms-auto" style="color:#9333ea"></i>
+            <i *ngIf="role==='MANAGER'" class="bi bi-check-circle-fill ms-auto"
+               style="color:var(--success)"></i>
           </div>
         </div>
       </div>
@@ -91,48 +79,89 @@
         <div class="input-icon-wrap">
           <i class="bi bi-lock input-icon"></i>
           <input [(ngModel)]="password" [type]="showPw ? 'text' : 'password'"
-                 class="form-control" [class.is-invalid]="fieldErrors['password']"
+                 class="form-control"
+                 [class.is-invalid]="fieldErrors['password']"
                  placeholder="Min. 6 characters">
           <button class="pw-toggle" type="button" (click)="showPw=!showPw">
             <i class="bi" [class.bi-eye]="!showPw" [class.bi-eye-slash]="showPw"></i>
           </button>
         </div>
-        <div *ngIf="fieldErrors['password']" class="field-error">{{ fieldErrors['password'] }}</div>
+        <div *ngIf="fieldErrors['password']" class="field-error">
+          <i class="bi bi-exclamation-circle"></i> {{ fieldErrors['password'] }}
+        </div>
       </div>
 
       <!-- Confirm Password -->
-      <div class="mb-4">
+      <div class="mb-3">
         <label class="form-label">Confirm Password</label>
         <div class="input-icon-wrap">
           <i class="bi bi-lock-fill input-icon"></i>
           <input [(ngModel)]="confirmPw" [type]="showConfirmPw ? 'text' : 'password'"
-                 class="form-control" [class.is-invalid]="fieldErrors['confirmPw']"
-                 placeholder="Re-enter your password" (keyup.enter)="onRegister()">
+                 class="form-control"
+                 [class.is-invalid]="fieldErrors['confirmPw']"
+                 placeholder="Re-enter your password"
+                 (keyup.enter)="onRegister()">
           <button class="pw-toggle" type="button" (click)="showConfirmPw=!showConfirmPw">
-            <i class="bi" [class.bi-eye]="!showConfirmPw" [class.bi-eye-slash]="showConfirmPw"></i>
+            <i class="bi"
+               [class.bi-eye]="!showConfirmPw"
+               [class.bi-eye-slash]="showConfirmPw"></i>
           </button>
         </div>
-        <div *ngIf="fieldErrors['confirmPw']" class="field-error">{{ fieldErrors['confirmPw'] }}</div>
+        <div *ngIf="fieldErrors['confirmPw']" class="field-error">
+          <i class="bi bi-exclamation-circle"></i> {{ fieldErrors['confirmPw'] }}
+        </div>
       </div>
 
       <!-- Submit -->
-      <button class="btn btn-primary w-100 py-2" (click)="onRegister()" [disabled]="loading"
-              style="font-size:.9rem !important;font-weight:600 !important">
+      <button class="btn btn-primary w-100 mt-2 py-2"
+              (click)="onRegister()" [disabled]="loading">
         <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
         <i *ngIf="!loading" class="bi bi-person-plus-fill"></i>
-        {{ loading ? 'Creating account…' : 'Create Account' }}
+        {{ loading ? 'Creating account…' : 'CREATE ACCOUNT' }}
       </button>
 
-      <hr style="border-color:var(--border);margin:24px 0">
+      <hr style="border-color:var(--border);margin:20px 0">
 
-      <p class="text-center mb-0" style="font-size:.875rem;color:var(--text-muted)">
+      <p class="text-center mb-0" style="font-size:.86rem;color:var(--text-muted)">
         Already have an account?
-        <a routerLink="/login"
-           style="color:var(--primary);font-weight:600;text-decoration:none;margin-left:4px">
+        <a routerLink="/login" class="text-coral"
+           style="font-weight:700;text-decoration:none;margin-left:6px">
           Sign in &rarr;
         </a>
       </p>
+    </div>
+  </div>
 
+  <!-- ── Right: workspace hero ─────────────────────── -->
+  <div class="login-hero">
+    <div class="workspace-illustration">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+
+      <div class="workspace-emoji e-person">🧑‍💻</div>
+      <div class="workspace-emoji e-cactus">🪴</div>
+      <div class="workspace-emoji e-coffee">📒</div>
+      <div class="workspace-emoji e-sparkle">🎉</div>
+      <div class="workspace-emoji e-bulb">🚀</div>
+    </div>
+
+    <div>
+      <h1>Join the<br>SkillTask family ✨</h1>
+      <p>Set up your account in seconds and start working smarter.</p>
+
+      <div class="feature-item">
+        <i class="bi bi-person-workspace"></i>
+        <span><strong>Employees</strong> get matched to tasks based on what they're great at</span>
+      </div>
+      <div class="feature-item">
+        <i class="bi bi-briefcase-fill"></i>
+        <span><strong>Managers</strong> create tasks and watch them auto-assign</span>
+      </div>
+      <div class="feature-item">
+        <i class="bi bi-stars"></i>
+        <span><strong>Everyone</strong> sees fair workload distribution in real time</span>
+      </div>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <!-- ── Top Navbar ──────────────────────────── -->
 <nav class="app-nav">
   <div class="brand">
-    <span>⚡</span> SkillTask
+    <span>🌸</span> SkillTask
   </div>
   <span class="role-badge" style="background:#ecfdf5;color:#059669">Employee</span>
 
@@ -41,6 +41,14 @@
       </div>
     </div>
 
+    <!-- Dark / light mode toggle -->
+    <button class="btn btn-sm btn-outline-secondary"
+            (click)="themeService.toggle()"
+            [title]="themeService.isDark ? 'Switch to light mode' : 'Switch to dark mode'">
+      <i class="bi" [class.bi-sun-fill]="themeService.isDark"
+                    [class.bi-moon-stars-fill]="!themeService.isDark"></i>
+    </button>
+
     <button class="btn btn-sm btn-outline-secondary" (click)="loadTasks()">
       <i class="bi bi-arrow-clockwise"></i>
     </button>
@@ -67,23 +75,23 @@
 
   <!-- Welcome card -->
   <div class="card mb-4 border-0 fade-up"
-       style="background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border-radius:16px !important">
-    <div class="card-body py-4 px-4" style="background:transparent">
+       style="background:linear-gradient(135deg,#EE5582 0%,#FF8FA6 50%,#FFD6BA 100%);color:#fff;border-radius:24px !important;overflow:hidden;position:relative">
+    <span style="position:absolute;right:-30px;top:-30px;font-size:9rem;opacity:.18">🌸</span>
+    <div class="card-body py-4 px-4" style="background:transparent;position:relative;z-index:1">
       <div class="d-flex align-items-center gap-3">
-        <div class="avatar" style="width:48px;height:48px;font-size:1.2rem;background:rgba(255,255,255,.2)">
+        <div class="avatar" style="width:54px;height:54px;font-size:1.4rem;background:rgba(255,255,255,.25);border-color:rgba(255,255,255,.6)">
           {{ authService.currentUser?.name?.charAt(0) }}
         </div>
         <div>
-          <h5 class="mb-0 fw-700" style="color:#fff">Hello, {{ authService.currentUser?.name }}!</h5>
-          <p class="mb-0" style="opacity:.8;font-size:.875rem">
-            You have
-            <strong>{{ stats.assigned }}</strong> new &amp;
+          <h5 class="mb-1 fw-700" style="color:#fff">Hello, {{ authService.currentUser?.name }} 👋</h5>
+          <p class="mb-0" style="opacity:.9;font-size:.88rem">
+            You have <strong>{{ stats.assigned }}</strong> new &amp;
             <strong>{{ stats.inProgress }}</strong> in-progress tasks today
           </p>
         </div>
         <div class="ms-auto d-none d-md-block text-end">
-          <div style="opacity:.6;font-size:.75rem">Total Assigned</div>
-          <div style="font-size:2.2rem;font-weight:800;line-height:1">{{ stats.total }}</div>
+          <div style="opacity:.7;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em">Total Assigned</div>
+          <div style="font-size:2.4rem;font-weight:800;line-height:1">{{ stats.total }}</div>
         </div>
       </div>
     </div>
@@ -92,28 +100,28 @@
   <!-- Stat row -->
   <div class="row g-3 mb-4">
     <div class="col-6 col-md-3">
-      <div class="stat-card" style="background:linear-gradient(135deg,#4f46e5,#818cf8)">
+      <div class="stat-card" style="background:linear-gradient(135deg,#EE5582,#FF8FA6)">
         <div class="num">{{ stats.total }}</div>
         <div class="lbl">All Tasks</div>
         <i class="bi bi-collection icon"></i>
       </div>
     </div>
     <div class="col-6 col-md-3">
-      <div class="stat-card" style="background:linear-gradient(135deg,#0ea5e9,#2563eb)">
+      <div class="stat-card" style="background:linear-gradient(135deg,#A990E5,#C7B1F0)">
         <div class="num">{{ stats.assigned }}</div>
         <div class="lbl">New</div>
         <i class="bi bi-inbox icon"></i>
       </div>
     </div>
     <div class="col-6 col-md-3">
-      <div class="stat-card" style="background:linear-gradient(135deg,#f59e0b,#d97706)">
+      <div class="stat-card" style="background:linear-gradient(135deg,#FFB84D,#FFD89C)">
         <div class="num">{{ stats.inProgress }}</div>
         <div class="lbl">In Progress</div>
         <i class="bi bi-arrow-repeat icon"></i>
       </div>
     </div>
     <div class="col-6 col-md-3">
-      <div class="stat-card" style="background:linear-gradient(135deg,#10b981,#059669)">
+      <div class="stat-card" style="background:linear-gradient(135deg,#4ECDC4,#79D8C4)">
         <div class="num">{{ stats.done }}</div>
         <div class="lbl">Completed</div>
         <i class="bi bi-check-circle icon"></i>
@@ -180,17 +188,31 @@
           {{ task.description }}
         </p>
 
-        <!-- Status flow -->
+        <!-- Status flow stepper -->
         <div class="status-flow mb-3">
-          <span class="status-step" [class.done-step]="true">Assigned</span>
-          <i class="bi bi-chevron-right arrow"></i>
-          <span class="status-step"
-                [class.active-step]="task.status==='IN_PROGRESS'"
-                [class.done-step]="task.status==='DONE'">
-            In Progress
-          </span>
-          <i class="bi bi-chevron-right arrow"></i>
-          <span class="status-step" [class.done-step]="task.status==='DONE'">Done</span>
+          <div class="status-step done-step">
+            <div class="step-dot"><i class="bi bi-check-lg"></i></div>
+            <div class="step-label">Assigned</div>
+          </div>
+          <div class="step-connector"
+               [class.fill]="task.status === 'IN_PROGRESS' || task.status === 'DONE'"></div>
+          <div class="status-step"
+               [class.active-step]="task.status === 'IN_PROGRESS'"
+               [class.done-step]="task.status === 'DONE'">
+            <div class="step-dot">
+              <i class="bi"
+                 [class.bi-play-fill]="task.status === 'IN_PROGRESS'"
+                 [class.bi-check-lg]="task.status === 'DONE'"></i>
+            </div>
+            <div class="step-label">In Progress</div>
+          </div>
+          <div class="step-connector" [class.fill]="task.status === 'DONE'"></div>
+          <div class="status-step" [class.done-step]="task.status === 'DONE'">
+            <div class="step-dot">
+              <i class="bi bi-check-lg" *ngIf="task.status === 'DONE'"></i>
+            </div>
+            <div class="step-label">Done</div>
+          </div>
         </div>
 
         <!-- Skills -->

@@ -1,120 +1,125 @@
 <div class="login-page">
 
-  <!-- ── Left hero panel ──────────────────── -->
-  <div class="login-hero">
-    <div>
-      <div style="font-size:2.4rem;margin-bottom:12px">⚡</div>
-      <h1>Smart Task<br>Allocation</h1>
-      <p>Automatically match tasks to the right person based on skills, proficiency, and workload.</p>
-
-      <div class="feature-item">
-        <i class="bi bi-cpu"></i>
-        <span>AI-powered skill matching algorithm</span>
-      </div>
-      <div class="feature-item">
-        <i class="bi bi-graph-up-arrow"></i>
-        <span>Real-time workload balancing</span>
-      </div>
-      <div class="feature-item">
-        <i class="bi bi-bell"></i>
-        <span>Instant assignment notifications</span>
-      </div>
-      <div class="feature-item">
-        <i class="bi bi-bar-chart"></i>
-        <span>Track progress from start to done</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Right form panel ──────────────────── -->
+  <!-- ── Left: form panel ─────────────────────────── -->
   <div class="login-form-side">
     <div class="login-form-wrap fade-up">
 
-      <h2>Welcome back</h2>
-      <p class="sub">Sign in to your SkillTask account</p>
+      <div class="login-logo">SkillTask</div>
+      <p class="sub" style="margin-bottom:6px">Welcome back !!!</p>
+      <h2>Log In</h2>
+      <p class="sub">Sign in to your account to continue.</p>
 
       <!-- Error -->
-      <div *ngIf="error"
-           class="d-flex align-items-center gap-2 p-3 mb-3 rounded-3"
-           style="background:#fff1f2;border:1px solid #fecdd3;font-size:.85rem;color:#e11d48">
+      <div *ngIf="error" class="form-error-banner">
         <i class="bi bi-exclamation-circle-fill"></i>
         {{ error }}
       </div>
 
       <!-- Email -->
       <div class="mb-3">
-        <label class="form-label">Email address</label>
-        <div class="position-relative">
-          <i class="bi bi-envelope position-absolute"
-             style="left:12px;top:50%;transform:translateY(-50%);color:var(--text-light)"></i>
+        <label class="form-label">Email</label>
+        <div class="input-icon-wrap">
+          <i class="bi bi-envelope input-icon"></i>
           <input [(ngModel)]="email" type="email" class="form-control"
-                 placeholder="you@company.com" style="padding-left:36px !important"
-                 [disabled]="loading">
+                 placeholder="login@gmail.com" [disabled]="loading">
         </div>
       </div>
 
       <!-- Password -->
-      <div class="mb-4">
-        <label class="form-label">Password</label>
-        <div class="position-relative">
-          <i class="bi bi-lock position-absolute"
-             style="left:12px;top:50%;transform:translateY(-50%);color:var(--text-light)"></i>
+      <div class="mb-2">
+        <div class="d-flex justify-content-between align-items-center">
+          <label class="form-label mb-0">Password</label>
+          <a href="#" class="text-coral" style="font-size:.74rem;font-weight:600;text-decoration:none"
+             (click)="$event.preventDefault()">Forgot Password ?</a>
+        </div>
+        <div class="input-icon-wrap mt-1">
+          <i class="bi bi-lock input-icon"></i>
           <input [(ngModel)]="password" type="password" class="form-control"
-                 placeholder="••••••••" style="padding-left:36px !important"
-                 [disabled]="loading" (keyup.enter)="onLogin()">
+                 placeholder="••••••••••••" [disabled]="loading"
+                 (keyup.enter)="onLogin()">
         </div>
       </div>
 
       <!-- Submit -->
-      <button class="btn btn-primary w-100 py-2" (click)="onLogin()" [disabled]="loading"
-              style="font-size:.9rem !important;font-weight:600 !important">
+      <button class="btn btn-primary w-100 mt-4 py-2"
+              (click)="onLogin()" [disabled]="loading">
         <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
-        <i *ngIf="!loading" class="bi bi-arrow-right-circle"></i>
-        {{ loading ? 'Signing in…' : 'Sign In' }}
+        {{ loading ? 'Signing in…' : 'LOGIN' }}
+        <i *ngIf="!loading" class="bi bi-arrow-right ms-1"></i>
       </button>
 
       <!-- Divider -->
-      <div class="d-flex align-items-center gap-3 my-4">
+      <div class="d-flex align-items-center gap-3 my-3">
         <hr class="flex-grow-1 m-0" style="border-color:var(--border)">
-        <span style="font-size:.75rem;color:var(--text-light);white-space:nowrap">Demo accounts</span>
+        <span style="font-size:.72rem;color:var(--text-light);white-space:nowrap">or try demo</span>
         <hr class="flex-grow-1 m-0" style="border-color:var(--border)">
       </div>
 
       <!-- Demo pills -->
-      <div class="d-flex flex-wrap gap-2">
+      <div class="d-flex flex-wrap gap-2 justify-content-center">
         <button class="demo-pill" (click)="fillDemo('manager')">
-          <span class="dot" style="background:#6366f1"></span>
-          Manager Mike
+          <span class="dot" style="background:var(--primary)"></span> Manager
         </button>
         <button class="demo-pill" (click)="fillDemo('alice')">
-          <span class="dot" style="background:#10b981"></span>
-          Alice (Java)
+          <span class="dot" style="background:var(--success)"></span> Alice
         </button>
         <button class="demo-pill" (click)="fillDemo('bob')">
-          <span class="dot" style="background:#f59e0b"></span>
-          Bob (React)
+          <span class="dot" style="background:var(--warning)"></span> Bob
         </button>
         <button class="demo-pill" (click)="fillDemo('charlie')">
-          <span class="dot" style="background:#3b82f6"></span>
-          Charlie (DevOps)
+          <span class="dot" style="background:var(--info)"></span> Charlie
         </button>
       </div>
 
-      <p class="mt-3 mb-0" style="font-size:.75rem;color:var(--text-light)">
-        <i class="bi bi-info-circle me-1"></i>
-        Password for all demo accounts: <strong style="color:var(--text-muted)">password123</strong>
+      <p class="text-center mt-3 mb-0" style="font-size:.74rem;color:var(--text-light)">
+        Password for demo accounts:
+        <strong style="color:var(--text-muted)">password123</strong>
       </p>
 
-      <hr style="border-color:var(--border);margin:24px 0">
+      <hr style="border-color:var(--border);margin:20px 0">
 
-      <p class="text-center mb-0" style="font-size:.875rem;color:var(--text-muted)">
-        Don't have an account?
-        <a routerLink="/signup"
-           style="color:var(--primary);font-weight:600;text-decoration:none;margin-left:4px">
-          Create one &rarr;
+      <p class="text-center mb-0" style="font-size:.86rem;color:var(--text-muted)">
+        Don't have an account yet?
+        <a routerLink="/signup" class="text-coral" style="font-weight:700;text-decoration:none;margin-left:6px">
+          Sign up for free
         </a>
       </p>
+    </div>
+  </div>
 
+  <!-- ── Right: workspace hero ─────────────────────── -->
+  <div class="login-hero">
+    <!-- Animated blobs in background -->
+    <div class="workspace-illustration">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+
+      <!-- Floating emoji workspace -->
+      <div class="workspace-emoji e-person">👩‍💻</div>
+      <div class="workspace-emoji e-cactus">🌵</div>
+      <div class="workspace-emoji e-coffee">☕</div>
+      <div class="workspace-emoji e-sparkle">✨</div>
+      <div class="workspace-emoji e-bulb">💡</div>
+    </div>
+
+    <!-- Hero content (top-left, doesn't overlap emoji) -->
+    <div>
+      <h1>Smart Task<br>Allocation 🌷</h1>
+      <p>Auto-match tasks to the right person based on skills, proficiency, and workload — instantly.</p>
+
+      <div class="feature-item">
+        <i class="bi bi-cpu-fill"></i>
+        <span><strong>Smart matching</strong> · Algorithm finds the best person for the job</span>
+      </div>
+      <div class="feature-item">
+        <i class="bi bi-graph-up-arrow"></i>
+        <span><strong>Workload balance</strong> · Spread tasks fairly across the team</span>
+      </div>
+      <div class="feature-item">
+        <i class="bi bi-bell-fill"></i>
+        <span><strong>Live updates</strong> · Notifications the moment a task is assigned</span>
+      </div>
     </div>
   </div>
 </div>

@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(dir \"C:\\\\Users\\\\2484977\\\\Desktop\\\\FinalProject\")"
+      "Bash(dir \"C:\\\\Users\\\\2484977\\\\Desktop\\\\FinalProject\")",
+      "PowerShell($mvn = \"C:\\\\Users\\\\2484977\\\\AppData\\\\Local\\\\Programs\\\\IntelliJ IDEA 2025.3.2\\\\plugins\\\\maven\\\\lib\\\\maven3\\\\bin\\\\mvn.cmd\"; cd \"C:\\\\Users\\\\2484977\\\\Desktop\\\\FinalProject\\\\selenium-tests\"; & $mvn clean test-compile 2>&1 | Select-Object -Last 25)",
+      "PowerShell(Invoke-RestMethod -Uri \"http://localhost:8081/api/users\" -Method Get | ForEach-Object { \"$\\($_.id\\) | $\\($_.name\\) | $\\($_.email\\) | $\\($_.role\\)\" })"
     ]
   }
 }
