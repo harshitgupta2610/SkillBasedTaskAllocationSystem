@@ -3,7 +3,13 @@
     "allow": [
       "Bash(dir \"C:\\\\Users\\\\2484977\\\\Desktop\\\\FinalProject\")",
       "PowerShell($mvn = \"C:\\\\Users\\\\2484977\\\\AppData\\\\Local\\\\Programs\\\\IntelliJ IDEA 2025.3.2\\\\plugins\\\\maven\\\\lib\\\\maven3\\\\bin\\\\mvn.cmd\"; cd \"C:\\\\Users\\\\2484977\\\\Desktop\\\\FinalProject\\\\selenium-tests\"; & $mvn clean test-compile 2>&1 | Select-Object -Last 25)",
-      "PowerShell(Invoke-RestMethod -Uri \"http://localhost:8081/api/users\" -Method Get | ForEach-Object { \"$\\($_.id\\) | $\\($_.name\\) | $\\($_.email\\) | $\\($_.role\\)\" })"
+      "PowerShell(Invoke-RestMethod -Uri \"http://localhost:8081/api/users\" -Method Get | ForEach-Object { \"$\\($_.id\\) | $\\($_.name\\) | $\\($_.email\\) | $\\($_.role\\)\" })",
+      "Bash(rm -f selenium-tests/src/test/java/com/skilltask/base/*.java)",
+      "Bash(rm -f selenium-tests/src/test/java/com/skilltask/pages/*.java)",
+      "Bash(rm -f selenium-tests/src/test/java/com/skilltask/tests/*.java)",
+      "Bash(mkdir -p \"C:/Users/2484977/Desktop/FinalProject/.idea/runConfigurations\" && echo OK)",
+      "PowerShell(Add-Type -AssemblyName System.IO.Compression.FileSystem; $zip = [System.IO.Compression.ZipFile]::OpenRead\\(\"C:\\\\Users\\\\2484977\\\\Desktop\\\\FinalProject\\\\SkillTask-Selenium-Tests.zip\"\\); $zip.Entries | Select-Object -ExpandProperty FullName | Sort-Object; $zip.Dispose\\(\\))",
+      "Bash(cd \"C:/Users/2484977/Desktop/FinalProject\" && rm -f .idea/runConfigurations/Run_Smoke_Tests.xml && echo \"removed smoke run config \\(smoke-suite.xml deleted\\)\")"
     ]
   }
 }

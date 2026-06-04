@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="SkillTaskSuite" verbose="1">
-
-  <test name="SkillTaskE2E">
+<suite name="SkillTaskSuite">
+  <test name="SkillTaskTests">
     <classes>
       <class name="com.skilltask.tests.LoginTest"/>
-      <class name="com.skilltask.tests.SignupTest"/>
-      <class name="com.skilltask.tests.CreateTaskTest"/>
-      <class name="com.skilltask.tests.UpdateTaskStatusTest"/>
-      <class name="com.skilltask.tests.AddSkillTest"/>
+      <class name="com.skilltask.tests.AddTaskTest"/>
+      <class name="com.skilltask.tests.TaskFlowTest"/>
     </classes>
   </test>
-
 </suite>

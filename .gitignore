@@ -1,2 +1,28 @@
-node_modules/
+# ───── Build output ─────
 target/
+dist/
+build/
+out/
+
+# ───── Node / Angular ─────
+node_modules/
+.angular/
+*.log
+frontend-log.txt
+
+# ───── Selenium / TestNG ─────
+test-output/
+selenium-tests/target/
+
+# ───── IDE ─────
+.idea/
+*.iml
+.vscode/
+
+# ───── OS junk ─────
+.DS_Store
+Thumbs.db
+
+# ───── Misc ─────
+*.zip
+*.tmp
